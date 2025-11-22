@@ -3,8 +3,8 @@ import { CartContext } from "../Context/CartContext";
 
 function Cart() {
   const { cartItems, removeFromCart, updateQuantity, placeOrder } = useContext(CartContext);
-
-  const total = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
+// Calculate total price dynamically
+  const cartTotal = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
 
   return (
     <div className="container py-4">
@@ -54,7 +54,7 @@ function Cart() {
 
       {cartItems.length > 0 && (
         <div className="text-end">
-          <h4>Total: ${total.toFixed(2)}</h4>
+          <h4>Total: ${cartTotal.toFixed(2)}</h4>
           <button className="btn btn-success" onClick={placeOrder}>Place Order</button>
         </div>
       )}
