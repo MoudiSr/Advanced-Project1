@@ -13,8 +13,8 @@ import Cheesecake from "../Assets/Cheesecake.jpg";
 function Menu() {
   const { addToCart } = useContext(CartContext);
 
-  const menuItems = [
-    { id: 1, name: "Burger", price: 5.99, image: Burger },
+  const dishes = [
+    { id: 1, name: "CheesBurger", price: 6.99, image: Burger },
     { id: 2, name: "Pizza", price: 7.99, image: Pizza },
     { id: 3, name: "Pasta", price: 6.99, image: Pasta },
     { id: 4, name: "Caramel Frappe", price: 4.99, image: Caramel },
@@ -28,7 +28,7 @@ function Menu() {
   return (
     <div className="container py-4">
       <div className="row g-4">
-        {menuItems.map((item) => (
+        {dishes.map((item) => (
           <div key={item.id} className="col-12 col-sm-6 col-md-4 col-lg-3">
             <div className="card h-100 shadow-sm text-center">
               <img

@@ -5,9 +5,9 @@ import chef3 from "../Assets/Chef3.jpg";
 
 function About() {
   const team = [
-    { img: chef1, name: "Abu Ali", role: "Head Chef" },
-    { img: chef3, name: "Rola", role: "Sous Chef" },
-    { img: chef2, name: "Mohammad", role: "Pastry Chef" },
+    { img: chef1, name: "Abu Ahmad", role: "Head Chef" },
+    { img: chef3, name: "Sarah", role: "Sous Chef" },
+    { img: chef2, name: "Hussein", role: "Pastry Chef" },
   ];
 
   const features = [
