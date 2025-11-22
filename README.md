@@ -23,25 +23,25 @@ git clone https://github.com/42230460-MohammadAhmad/Advanced-Project1.git
 ## Screenshots
 
 **Home Page**  
-![Home Screenshot](Screenshots/Home.png)
+![Home Screenshot](frontend/src/Screenshots/Home.png)
 
 **Menu Page**  
-![Menu Screenshot](Screenshots/Menu.png)
+![Menu Screenshot](frontend/src/Screenshots/Menu.png)
 
 **Cart Page**  
-![Cart Screenshot](Screenshots/Cart.png)
+![Cart Screenshot](frontend/src/Screenshots/Cart.png)
 
 **About Page**  
-![About Screenshot](Screenshots/About.png)
+![About Screenshot](frontend/src/Screenshots/About.png)
 
 **Contact Page**  
-![Contact Screenshot](Screenshots/Contact.png)
+![Contact Screenshot](frontend/src/Screenshots/Contact.png)
 
 **Kitchen Dashboard (Admin)**  
-![Kitchen Screenshot](Screenshots/Kitchen.png)
+![Kitchen Screenshot](frontend/src/Screenshots/Kitchen.png)
 
 **Login Page**  
-![Login Screenshot](Screenshots/Login.png)
+![Login Screenshot](frontend/src/Screenshots/Login.png)
 
 **OrderTrack Page**  
-![Order Screenshot](Screenshots/OrderTrack.png)
+![Order Screenshot](frontend/src/Screenshots/OrderTrack.png)
