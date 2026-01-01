@@ -8,11 +8,12 @@ function Login() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const success = login(email, password);
-    if (!success) setError("Invalid email or password");
-  };
+  const handleSubmit = async (e) => {
+  e.preventDefault();
+  const success = await login(email, password);
+  if (!success) setError("Invalid email or password");
+};
+
 
   return (
     <div className="container py-5" style={{ maxWidth: "400px" }}>
