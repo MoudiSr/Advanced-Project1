@@ -10,10 +10,11 @@ function Login() {
 
   const handleSubmit = async (e) => {
   e.preventDefault();
-  const success = await login(email, password);
-  if (!success) setError("Invalid email or password");
-};
+  setError(""); // reset previous error
 
+  const success = await login(email, password); // wait for login to finish
+  if (!success) setError("Invalid email or password"); // show error message
+};
 
   return (
     <div className="container py-5" style={{ maxWidth: "400px" }}>
