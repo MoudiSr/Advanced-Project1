@@ -1,5 +1,7 @@
+import dotenv from "dotenv";
+dotenv.config();
 import express from "express";
-import mysql from "mysql";
+import mysql from "mysql2";
 import cors from "cors";
 
 const app = express();
@@ -12,17 +14,19 @@ app.use(express.json());
 // MYSQL CONNECTION
 // =======================
 const db = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "",
-  database: "restaurant_db",
+  host: process.env.MYSQL_HOST,
+  user: process.env.MYSQL_USER,
+  password: process.env.MYSQL_PASSWORD,
+  database: process.env.MYSQL_DATABASE,
+  port: Number(process.env.MYSQL_PORT),       // convert port string → number
+  ssl: { rejectUnauthorized: false }          // allow Railway self-signed certificate
 });
 
 db.connect((err) => {
   if (err) {
-    console.error("MySQL connection failed:", err);
+    console.error("DB connection error:", err);
   } else {
-    console.log("Connected to MySQL database");
+    console.log("Connected to Railway MySQL ✅");
   }
 });
 
@@ -30,15 +34,35 @@ db.connect((err) => {
 // LOGIN
 // =======================
 app.post("/login", (req, res) => {
-  const { email, password } = req.body;
-  const q = "SELECT id, email, role FROM users WHERE email = ? AND password = ?";
-  
+  const email = req.body.email?.trim();
+  const password = req.body.password?.trim();
+ 
+
+  if (!email || !password) {
+    return res.status(400).json({ message: "Email and password are required" });
+  }
+
+  const q = `
+    SELECT id, email, role
+    FROM users
+    WHERE email = ? AND password = ?
+    LIMIT 1
+  `;
+
   db.query(q, [email, password], (err, data) => {
-    if (err) return res.status(500).json(err);
-    if (data.length === 0) return res.status(401).json({ message: "Invalid credentials" });
+    if (err) {
+      console.error("Login query error:", err);
+      return res.status(500).json({ message: "Database error" });
+    }
+
+    if (data.length === 0) {
+      return res.status(401).json({ message: "Invalid email or password" });
+    }
+
     return res.json(data[0]);
   });
 });
+
 
 // =======================
 // CREATE ORDER
@@ -121,6 +145,8 @@ app.delete("/orders/:id", (req, res) => {
 });
 
 // =======================
-app.listen(5000, () => {
-  console.log("Backend running on http://localhost:5000");
+const PORT = process.env.PORT || 5000; // use Railway port or fallback to 5000 locally
+app.listen(PORT, () => {
+  console.log(`Backend running on port ${PORT}`);
 });
+
