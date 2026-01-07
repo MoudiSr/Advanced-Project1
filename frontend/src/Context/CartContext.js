@@ -3,6 +3,8 @@ import { AuthContext } from "./AuthContext";
 
 export const CartContext = createContext();
 
+const API = process.env.REACT_APP_API_URL;
+
 export function CartProvider({ children }) {
   const { currentUser } = useContext(AuthContext);
 
@@ -37,7 +39,7 @@ export function CartProvider({ children }) {
   const submitOrder = async () => {
     if (!currentUser || cartItems.length === 0) return;
 
-    await fetch("http://localhost:5000/orders", {
+    await fetch(`${API}/orders`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -55,7 +57,7 @@ export function CartProvider({ children }) {
 
   // UPDATE ORDER STATUS USING BACKEND
   const updateOrderStatus = async (id, status) => {
-    await fetch(`http://localhost:5000/orders/${id}`, {
+    await fetch(`${API}/orders/${id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ status }),
@@ -63,7 +65,7 @@ export function CartProvider({ children }) {
   };
 //DELETE ORDER USING BACKEND
   const deleteOrder = async (id) => {
-    await fetch(`http://localhost:5000/orders/${id}`, {
+    await fetch(`${API}/orders/${id}`, {
       method: "DELETE",
     });
   };
