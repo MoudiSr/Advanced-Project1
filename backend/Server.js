@@ -14,10 +14,10 @@ app.use(express.json());
 // POSTGRESQL CONNECTION
 // =======================
 const db = new Pool({
-  host: "localhost",
-  user: "postgres",         // change if needed
-  password: "",             // change if needed
-  database: "restaurant_db",
+  host: "ep-purple-thunder-ad990ow8-pooler.c-2.us-east-1.aws.neon.tech",
+  user: "neondb_owner",         // change if needed
+  password: "npg_jZUzJPvSW30f",             // change if needed
+  database: "neondb",
   port: 5432,
   // ssl: { rejectUnauthorized: false }, // enable if using hosted PG
 });
